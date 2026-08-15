@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/configs/colors.dart';
+import 'package:flutter_application_1/views/settings.dart';
+import 'package:get/get.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -19,6 +21,17 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         backgroundColor: primaryColor,
         foregroundColor: secondaryColor,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Settings()),
+              );
+            },
+          ),
+        ],
       ),
 
       body: SingleChildScrollView(
@@ -68,18 +81,17 @@ class _ProfileState extends State<Profile> {
             buildProfileTile(
               Icons.local_fire_department,
               "Current Streak",
-              "0",
+              "18",
+              null,
             ),
 
-            buildProfileTile(Icons.check_circle, "Tasks Completed", "10"),
+            buildProfileTile(Icons.check_circle, "Tasks Completed", "10", null),
 
-            buildProfileTile(Icons.emoji_events, "Achievements", "15"),
+            buildProfileTile(Icons.emoji_events, "Achievements", "15", null),
 
-            buildProfileTile(Icons.settings, "Settings", ""),
+            buildProfileTile(Icons.help_outline, "Help & Support", "", null),
 
-            buildProfileTile(Icons.help_outline, "Help & Support", ""),
-
-            buildProfileTile(Icons.logout, "Log Out", ""),
+            buildProfileTile(Icons.logout, "Log Out", "", null),
 
             const SizedBox(height: 30),
           ],
@@ -88,7 +100,12 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget buildProfileTile(IconData icon, String title, String value) {
+  Widget buildProfileTile(
+    IconData icon,
+    String title,
+    String value,
+    VoidCallbackAction? onTap,
+  ) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       elevation: 2,

@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       "18 Days",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: secondaryColor,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
