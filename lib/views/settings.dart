@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/configs/colors.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -138,7 +139,11 @@ class _SettingsState extends State<Settings> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    var store = GetStorage();
+                    store.erase();
+                    Navigator.pushReplacementNamed(context, "/");
+                  },
                   icon: const Icon(Icons.logout),
                   label: const Text("Log Out", style: TextStyle(fontSize: 18)),
                 ),

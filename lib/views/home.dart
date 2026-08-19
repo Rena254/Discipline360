@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Rena"),
+        title: Text("Discipline 360"),
         backgroundColor: primaryColor,
         foregroundColor: Colors.amberAccent,
         centerTitle: true,
@@ -33,20 +33,19 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 10),
 
               const Text(
-                "Hi, Rena 👋",
+                "Welcome back!",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 8),
 
               const Text(
-                "Welcome back! Stay disciplined today.",
+                "Stay disciplined today.",
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
 
               const SizedBox(height: 25),
 
-              // Current Streak Box
               Container(
                 height: 120,
                 width: double.infinity,

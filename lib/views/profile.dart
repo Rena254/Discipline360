@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/configs/colors.dart';
 import 'package:flutter_application_1/views/settings.dart';
-import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+var store = GetStorage();
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -13,6 +15,10 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    String imageUrl =
+        "http://127.0.0.1/discipline/get_image.php?image=${store.read("image")}";
+
+    print("IMAGE URL: $imageUrl");
     return Scaffold(
       backgroundColor: const Color(0xFFF5F9FF),
 
@@ -41,19 +47,26 @@ class _ProfileState extends State<Profile> {
             CircleAvatar(
               radius: 55,
               backgroundColor: secondaryColor,
-              child: const Icon(Icons.person, size: 60, color: primaryColor),
+              backgroundImage: NetworkImage(imageUrl),
+              onBackgroundImageError: (exception, stackTrace) {
+                print("IMAGE ERROR: $exception");
+              },
             ),
+
             const SizedBox(height: 15),
             Text(
-              "Karen Kiplagat",
+              "${store.read("fname")} ${store.read("lname")}",
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
             Text(
-              "karenkiplagat10@yahoo.com",
+              store.read("email") ?? "",
               style: TextStyle(color: primaryColor),
             ),
-            Text("0712345678", style: TextStyle(color: primaryColor)),
+            Text(
+              store.read("phone") ?? "",
+              style: TextStyle(color: primaryColor),
+            ),
 
             const SizedBox(height: 20),
 
@@ -67,9 +80,7 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
-                onPressed: () {
-                  // Navigate to Edit Profile Page later
-                },
+                onPressed: () {},
                 icon: const Icon(Icons.edit, color: secondaryColor),
                 label: const Text(
                   "Edit Profile",
@@ -91,7 +102,10 @@ class _ProfileState extends State<Profile> {
 
             buildProfileTile(Icons.help_outline, "Help & Support", "", null),
 
-            buildProfileTile(Icons.logout, "Log Out", "", null),
+            buildProfileTile(Icons.logout, "Log Out", "", () {
+              store.erase();
+              Navigator.pushReplacementNamed(context, "/");
+            }),
 
             const SizedBox(height: 30),
           ],
@@ -104,7 +118,7 @@ class _ProfileState extends State<Profile> {
     IconData icon,
     String title,
     String value,
-    VoidCallbackAction? onTap,
+    VoidCallback? onTap,
   ) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -125,9 +139,7 @@ class _ProfileState extends State<Profile> {
                 ),
               )
             : const Icon(Icons.arrow_forward_ios, size: 16),
-        onTap: () {
-          // Add navigation later
-        },
+        onTap: onTap,
       ),
     );
   }

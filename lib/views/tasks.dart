@@ -59,7 +59,7 @@ class _TasksState extends State<Tasks> {
 
               const SizedBox(height: 15),
 
-              // Workout
+            
               Container(
                 decoration: BoxDecoration(
                   color: secondaryColor,
@@ -86,7 +86,7 @@ class _TasksState extends State<Tasks> {
 
               const SizedBox(height: 10),
 
-              // Reading
+          
               Container(
                 decoration: BoxDecoration(
                   color: secondaryColor,
@@ -113,7 +113,7 @@ class _TasksState extends State<Tasks> {
 
               const SizedBox(height: 10),
 
-              // Water
+          
               Container(
                 decoration: BoxDecoration(
                   color: secondaryColor,
@@ -140,7 +140,7 @@ class _TasksState extends State<Tasks> {
 
               const SizedBox(height: 10),
 
-              // Prayer
+          
               Container(
                 decoration: BoxDecoration(
                   color: secondaryColor,
@@ -167,7 +167,7 @@ class _TasksState extends State<Tasks> {
 
               const SizedBox(height: 10),
 
-              // Journal
+            
               Container(
                 decoration: BoxDecoration(
                   color: secondaryColor,
